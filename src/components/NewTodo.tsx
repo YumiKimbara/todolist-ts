@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import classes from "./NewTodo.module.css";
+
 //onAddTodo: (text: string) => voidはonAddTodoのtypeを指定している。
 //(text: string)=>voidは関数ではなく、onAddTodoが関数のtypeで何もreturnしない(voidのため)ということを表していてcallback関数ではない。
 const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
@@ -22,7 +24,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Todo text</label>
       <input type="text" id="text" ref={todoTextInputRef} />
       <button>Add Todo</button>
