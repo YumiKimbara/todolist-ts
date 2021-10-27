@@ -1,10 +1,12 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 
+import { TodosContext } from "../store/todo-context";
 import classes from "./NewTodo.module.css";
 
 //onAddTodo: (text: string) => voidはonAddTodoのtypeを指定している。
 //(text: string)=>voidは関数ではなく、onAddTodoが関数のtypeで何もreturnしない(voidのため)ということを表していてcallback関数ではない。
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todoCtx = useContext(TodosContext);
   //refがHTMLInputElementとconnectしていることを知らせる。
   const todoTextInputRef = useRef<HTMLInputElement>(null);
   //eventもTSはどんなタイプかわからないから、React.FormEventと指定してあげる。
@@ -20,7 +22,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todoCtx.addTodo(enteredText);
   };
 
   return (
